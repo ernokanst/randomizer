@@ -1,6 +1,7 @@
 import sys
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow
+import random
  
  
 class MyWidget(QMainWindow):
@@ -10,7 +11,11 @@ class MyWidget(QMainWindow):
         self.needrand.clicked.connect(self.run)
  
     def run(self):
-        self.res.setText("OK")
+        if self.neednums.isChecked():
+            for i in range(int(self.resquant.text())):
+                self.res.setText(str(random.randInt(int(self.fromn.text()),
+                                                    int(self.ton.text()))) + 
+                                 '\n')
  
  
 app = QApplication(sys.argv)
