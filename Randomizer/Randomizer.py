@@ -21,8 +21,11 @@ class MyWidget(QMainWindow):
 
         elif self.needobj.isChecked(): #элемент последовательности
             for i in range(self.resquant.value()):
-                self.answer.append(random.choice(
-                    self.sequence.toPlainText().split()))
+                if self.sequence.toPlainText() != '': #проверка
+                    self.answer.append(random.choice(
+                        self.sequence.toPlainText().split()))
+                else: #иначе – ошибка
+                    self.answer.append('Не выбраны необходимые символы')
 
         elif self.needpass.isChecked(): #генерация пароля
             self.whattouse = [] #что необходимо использовать в пароле
