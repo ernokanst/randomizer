@@ -17,6 +17,7 @@ class MyWidget(QMainWindow):
                 self.answer.append(str(random.randint(self.fromn.value(), 
                                                   self.ton.value())))
         self.res.setPlainText('\n'.join(self.answer))
+        
  
  
 app = QApplication(sys.argv)
