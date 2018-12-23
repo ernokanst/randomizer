@@ -1,7 +1,7 @@
 import sys
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow
-import random
+import random #самое важное
 import string
 
 
@@ -12,20 +12,20 @@ class MyWidget(QMainWindow):
         self.needrand.clicked.connect(self.run)
 
     def run(self):
-        self.answer = []
+        self.answer = [] #формирование ответа
 
-        if self.neednums.isChecked():
+        if self.neednums.isChecked(): #генерация числа
             for i in range(self.resquant.value()):
                 self.answer.append(str(random.randint(self.fromn.value(), 
                                                   self.ton.value())))
 
-        elif self.needobj.isChecked():
+        elif self.needobj.isChecked(): #элемент последовательности
             for i in range(self.resquant.value()):
                 self.answer.append(random.choice(
                     self.sequence.toPlainText().split()))
 
-        elif self.needpass.isChecked():
-            self.whattouse = []
+        elif self.needpass.isChecked(): #генерация пароля
+            self.whattouse = [] #что необходимо использовать в пароле
             if self.upletters.isChecked():
                 self.whattouse.append('U')
             if self.lowletters.isChecked():
@@ -36,9 +36,9 @@ class MyWidget(QMainWindow):
                 self.whattouse.append('S')
 
             for i in range(self.resquant.value()):
-                self.password = ''
+                self.password = '' #формирование пароля
                 for j in range(self.lenpass.value()):
-                    if self.whattouse != []:
+                    if self.whattouse != []: #проверка, что параметры заданы
                         self.using = random.choice(self.whattouse)
                         if self.using == 'U':
                             self.password += random.choice(string.ascii_uppercase)
@@ -48,11 +48,11 @@ class MyWidget(QMainWindow):
                             self.password += random.choice(string.digits)
                         elif self.using == 'S':
                             self.password += random.choice(string.punctuation)
-                    else:
+                    else: #иначе – вывести ошибку
                         self.password = 'Не выбраны необходимые символы'
                 self.answer.append(self.password)
 
-        self.res.setPlainText('\n'.join(self.answer))
+        self.res.setPlainText('\n'.join(self.answer)) #вывод ответа
 
 
 app = QApplication(sys.argv)
