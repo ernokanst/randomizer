@@ -16,8 +16,12 @@ class MyWidget(QMainWindow):
             for i in range(self.resquant.value()):
                 self.answer.append(str(random.randint(self.fromn.value(), 
                                                   self.ton.value())))
+        elif self.needobj.isChecked():
+            print(self.sequence.toPlainText())
+            for i in range(self.resquant.value()):
+                self.answer.append(random.choice(
+                    self.sequence.toPlainText().split()))
         self.res.setPlainText('\n'.join(self.answer))
-        
  
  
 app = QApplication(sys.argv)
